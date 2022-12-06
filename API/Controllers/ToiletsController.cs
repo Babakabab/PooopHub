@@ -17,6 +17,6 @@ public class ToiletsController:BaseApiController
     [HttpGet("{id}")]
     public async Task<ActionResult<Toilet>> GetToilet(Guid id)
     {
-        return Ok();
+        return await Mediator.Send(new Details.Query { Id = id });
     }
 }
