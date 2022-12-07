@@ -4,14 +4,34 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Domain;
+using Microsoft.AspNetCore.Identity;
 using Persistance;
 
 namespace Persistence
 {
     public class Seed
     {
-        public static async Task SeedData(DataContext context)
+        public static async Task SeedData(DataContext context, UserManager<AppUser> userManager)
         {
+
+            if (!userManager.Users.Any())
+            {
+                var users = new List<AppUser>
+                {
+                    new AppUser { DisplayName = "Bob", UserName = "Bob", Email = "Babak@mail.com" },
+                    new AppUser { DisplayName = "Babak", UserName = "Babak", Email = "Babak@mail.com" },
+                    new AppUser { DisplayName = "Baboon", UserName = "Baboon", Email = "Babak@mail.com" },
+                    new AppUser { DisplayName = "BobMan", UserName = "BobMan", Email = "Babak@mail.com" },
+                    new AppUser { DisplayName = "Bobbby", UserName = "Bobbby", Email = "Babak@mail.com" },
+                    new AppUser { DisplayName = "Bobs", UserName = "Bobs", Email = "Babak@mail.com" },
+                    new AppUser { DisplayName = "Bobbie", UserName = "Bobbie", Email = "Babak@mail.com" },
+                    new AppUser { DisplayName = "Bobbo", UserName = "Bobbo", Email = "Babak@mail.com" },
+                };
+                foreach (var user in users)
+                {
+                    await userManager.CreateAsync(user, "Pa$$Word123");
+                }
+            }
             if (context.Toilets.Any()) return;
 
             var Toilets = new List<Toilet>
