@@ -22,7 +22,7 @@ public class List
 
         public async Task<List<Toilet>> Handle(Query request, CancellationToken cancellationToken)
         {
-            return await _context.Toilets.ToListAsync();
+            return await _context.Toilets.ToListAsync(cancellationToken);
         }
     }
 }
