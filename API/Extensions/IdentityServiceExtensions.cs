@@ -1,3 +1,4 @@
+using API.Services;
 using Domain;
 using Microsoft.AspNetCore.Identity;
 using Persistance;
@@ -13,6 +14,8 @@ public static class IdentityServiceExtensions
             opt.Password.RequireUppercase = false;
         }).AddEntityFrameworkStores<DataContext>().AddSignInManager<SignInManager<AppUser>>();
         services.AddAuthentication();
+        services.AddScoped<TokenService>();
+
         return services;
     }
 }
