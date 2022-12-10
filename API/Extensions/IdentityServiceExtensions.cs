@@ -15,6 +15,7 @@ public static class IdentityServiceExtensions
         services.AddIdentityCore<AppUser>(opt =>
         {
             opt.Password.RequireUppercase = false;
+            opt.User.RequireUniqueEmail = true;
         }).AddEntityFrameworkStores<DataContext>().AddSignInManager<SignInManager<AppUser>>();
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["TokenKey"]));
