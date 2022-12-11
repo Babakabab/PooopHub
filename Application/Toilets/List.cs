@@ -1,3 +1,4 @@
+using AutoMapper;
 using Domain;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -7,22 +8,29 @@ namespace Application.Toilets;
 
 public class List
 {
-    public class Query : IRequest<List<Toilet>>
+    public class Query : IRequest<List<ToiletDto>>
     {
 
     }
-    public class Handler:IRequestHandler<Query,List<Toilet>>
+    public class Handler:IRequestHandler<Query,List<ToiletDto>>
     {
         private readonly DataContext _context;
+        private readonly IMapper _mapper;
 
-        public Handler(DataContext context)
+        public Handler(DataContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
-        public async Task<List<Toilet>> Handle(Query request, CancellationToken cancellationToken)
+        public async Task<List<ToiletDto>> Handle(Query request, CancellationToken cancellationToken)
         {
-            return await _context.Toilets.ToListAsync(cancellationToken);
+            var toilets = await _context.Toilets
+                .Include(o => o.Creator)
+                .ToListAsync(cancellationToken);
+            var toiletsToReturn = _mapper.Map<List<ToiletDto>>(toilets);
+            //ThenInclude later on when we also wanna load the reviews
+            return toiletsToReturn;
         }
     }
 }

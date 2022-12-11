@@ -8,5 +8,5 @@ public class AppUser: IdentityUser
 
     public ICollection<ToiletReviewer> ReviewedToilets { get; set; }
 
-    public ICollection<Toilet> CreatedToilets { get; set; }
+    public ICollection<Toilet> CreatedToilets { get; set; } = new List<Toilet>();
 }

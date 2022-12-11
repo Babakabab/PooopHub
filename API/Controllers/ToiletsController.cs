@@ -11,7 +11,7 @@ public class ToiletsController:BaseApiController
 
     [HttpGet]
     [AllowAnonymous]
-    public async Task<ActionResult<List<Toilet>>> GetToilets()
+    public async Task<ActionResult<List<ToiletDto>>> GetToilets()
     {
         return await Mediator.Send(new List.Query());
 
