@@ -1,4 +1,6 @@
 using Application.Core;
+using Application.Interfaces;
+using Application.Interfaces.Security;
 using Application.Toilets;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -21,6 +23,8 @@ public static class ApplicationServiceExtensions
         });
         services.AddMediatR(typeof(List.Handler).Assembly);
         services.AddAutoMapper(typeof(MappingProfiles).Assembly);
+        services.AddHttpContextAccessor();
+        services.AddScoped<IUserAccessor, UserAccessor>();
         return services;
     }
 }
