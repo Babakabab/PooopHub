@@ -15,4 +15,6 @@ public class Toilet
     public AppUser Creator { get; set; }
 
     public ICollection<ToiletReviewer> ToiletReviewers { get; set; }
+    public ICollection<ToiletModifier> ToiletModifiers { get; set; }
+    public ICollection<Pooper> Poopers { get; set; }
 }

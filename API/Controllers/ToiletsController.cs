@@ -35,6 +35,12 @@ public class ToiletsController:BaseApiController
         toilet.Id = id;
         return Ok(await Mediator.Send(new Edit.Command{Toilet=toilet}));
     }
+    [HttpPost("use/{id}")]
+    public async Task<IActionResult> UseToilet(Guid id, Toilet toilet)
+    {
+        toilet.Id = id;
+        return Ok(await Mediator.Send(new Use.Command{Toilet=toilet}));
+    }
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteToilet(Guid id)
