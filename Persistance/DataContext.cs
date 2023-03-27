@@ -24,7 +24,7 @@ public class DataContext : IdentityDbContext<AppUser>
             .HasForeignKey(tr => tr.ToiletId);
 
         builder.Entity<ToiletReviewer>()
-            .HasOne(t => t.Reviewer)
+            .HasOne(t => t.AppUser)
             .WithMany(r => r.ReviewedToilets)
             .HasForeignKey(tr => tr.ReviewerUserId);
 

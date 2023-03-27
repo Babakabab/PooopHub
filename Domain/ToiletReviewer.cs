@@ -3,7 +3,7 @@ namespace Domain;
 public class ToiletReviewer
 {
     public string ReviewerUserId { get; set; }
-    public AppUser Reviewer { get; set; }
+    public AppUser AppUser { get; set; }
     public Guid ToiletId { get; set; }
     public Toilet Toilet { get; set; }
 

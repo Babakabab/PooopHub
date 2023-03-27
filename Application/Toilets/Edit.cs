@@ -39,6 +39,7 @@ public class Edit
             };
             toilet.ToiletModifiers.Add(modifier);
             _mapper.Map(request.Toilet, toilet);
+            _context.ToiletModifiers.Add(modifier);
 
             await _context.SaveChangesAsync();
 

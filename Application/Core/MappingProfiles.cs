@@ -19,5 +19,11 @@ public class MappingProfiles : AutoMapper.Profile
         CreateMap<Pooper, Profile.Profile>()
             .ForMember(d => d.DisplayName, o => o.MapFrom(s => s.AppUser.DisplayName))
             .ForMember(d => d.Username, o => o.MapFrom(s => s.AppUser.UserName));
+        CreateMap<ToiletModifier, Profile.Profile>()
+            .ForMember(d => d.DisplayName, o => o.MapFrom(s => s.AppUser.DisplayName))
+            .ForMember(d => d.Username, o => o.MapFrom(s => s.AppUser.UserName));
+        CreateMap<ToiletReviewer, Profile.Profile>()
+            .ForMember(d => d.DisplayName, o => o.MapFrom(s => s.AppUser.DisplayName))
+            .ForMember(d => d.Username, o => o.MapFrom(s => s.AppUser.UserName));
     }
 }

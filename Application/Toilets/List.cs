@@ -30,6 +30,7 @@ public class List
                 .ThenInclude(u=>u.AppUser)
                 .Include(o => o.Creator)
                 .Include(o=>o.ToiletModifiers)
+                .ThenInclude(u=>u.AppUser)
                 .ToListAsync(cancellationToken);
             var toiletsToReturn = _mapper.Map<List<ToiletDto>>(toilets);
             //ThenInclude later on when we also wanna load the reviews
