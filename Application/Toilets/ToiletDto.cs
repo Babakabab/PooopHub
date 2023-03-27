@@ -1,5 +1,3 @@
-using Domain;
-
 namespace Application.Toilets;
 
 public class ToiletDto
@@ -14,5 +12,8 @@ public class ToiletDto
     public double lng { get; set; }
     public bool IsDeleted { get; set; }
     public Profile.Profile Creator { get; set; }
+    public List<Profile.Profile> ToiletModifiers { get; set; }
+    public List<Profile.Profile> Poopers { get; set; }
+
 
 }

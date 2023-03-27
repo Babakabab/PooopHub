@@ -39,6 +39,7 @@ public class Use
             };
             toilet.Poopers.Add(pooper);
             _mapper.Map(request.Toilet, toilet);
+            _context.Poopers.Add(pooper);
 
             await _context.SaveChangesAsync();
 

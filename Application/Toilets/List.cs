@@ -26,7 +26,10 @@ public class List
         public async Task<List<ToiletDto>> Handle(Query request, CancellationToken cancellationToken)
         {
             var toilets = await _context.Toilets
+                .Include(o=>o.Poopers)
+                .ThenInclude(u=>u.AppUser)
                 .Include(o => o.Creator)
+                .Include(o=>o.ToiletModifiers)
                 .ToListAsync(cancellationToken);
             var toiletsToReturn = _mapper.Map<List<ToiletDto>>(toilets);
             //ThenInclude later on when we also wanna load the reviews
